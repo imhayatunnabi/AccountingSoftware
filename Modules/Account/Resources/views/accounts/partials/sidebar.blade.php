@@ -10,11 +10,11 @@
                     </a>
                 </div>
                 <li>
-                    <a href="{{ route('account.index') }}"><i class="fa-solid fa-gear"></i></i>
-                        Account </a>
+                    <a href="{{ route('account.index') }}"><i class="fa-solid fa-file-invoice-dollar"></i>
+                        Accounts </a>
                 </li>
                 <li>
-                    <a href="{{ route('account.type.index') }}"><i class="fa-solid fa-gear"></i></i>
+                    <a href="{{ route('account.type.index') }}"><i class="fa-solid fa-square"></i>
                         Account Type </a>
                 </li>
                 <li>
@@ -22,7 +22,7 @@
                         Account Setup </a>
                 </li>
                 <li>
-                    <a href="{{ route('account.transaction.index') }}"><i class="fa-solid fa-gear"></i></i>
+                    <a href="{{ route('account.transaction.index') }}"><i class="fa-solid fa-money-check-dollar"></i>
                         Transaction </a>
                 </li>
             </ul>

@@ -32,7 +32,7 @@
                 </li>
                 @endpermission
                 <li>
-                    <a href="{{ route('account.index') }}"><i class="fa-solid fa-gear"></i></i>
+                    <a href="{{ route('account.index') }}"><i class="fa-solid fa-file-invoice-dollar"></i>
                         Account </a>
                 </li>
 

@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Account\Http\Controllers\ReportingController;
 use Modules\Account\Http\Controllers\AccountTypeController;
-use Modules\Account\Http\Controllers\AccountSetupController;
 use Modules\Account\Http\Controllers\TransactionController;
+use Modules\Account\Http\Controllers\AccountSetupController;
 use Modules\Account\Http\Controllers\TransactionTypeController;
 
 /*
@@ -18,6 +19,7 @@ use Modules\Account\Http\Controllers\TransactionTypeController;
 */
 
 Route::prefix('account')->name('account.')->group(function() {
+    Route::get('/',[ReportingController::class,'index'])->name('index');
     Route::prefix('/type')->name('type.')->group(function(){
         Route::get('/',[AccountTypeController::class,'index'])->name('index');
         Route::get('/create',[AccountTypeController::class,'create'])->name('create');

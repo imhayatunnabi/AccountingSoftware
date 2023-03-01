@@ -31,6 +31,12 @@
                         Settings </a>
                 </li>
                 @endpermission
+                {{-- @permission('account.index') --}}
+                <li>
+                    <a href="{{ route('account.index') }}"><i class="fa-solid fa-gear"></i></i>
+                        Account </a>
+                </li>
+                {{-- @endpermission --}}
                 @permission('account.type.index')
                 <li>
                     <a href="{{ route('account.type.index') }}"><i class="fa-solid fa-gear"></i></i>

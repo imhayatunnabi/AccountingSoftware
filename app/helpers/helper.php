@@ -3,6 +3,8 @@
 use App\Models\Role;
 use App\Models\Settings;
 use Illuminate\Support\Facades\Route;
+use Modules\Account\Entities\AccountSetup;
+use Modules\Account\Entities\Transaction;
 
 // to check if the route has any permission to the auth user
 if (!function_exists('hasAnyPermissions')) {
@@ -44,5 +46,15 @@ if (!function_exists('settings')) {
     function settings()
     {
         return Settings::first();
+    }
+}
+if (!function_exists('remainingBalance')) {
+    function remainingBalance($id)
+    {
+        $transaction = Transaction::where('account_id',$id);
+        $cashIn = $transaction->where('status',true)->sum('amount');
+        $cashOut = $transaction->where('status',false)->sum('amount');
+        $remainingbalance = $cashIn - $cashOut;
+        return $remainingbalance;
     }
 }

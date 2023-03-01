@@ -25,7 +25,11 @@
             </label>
             <select name="account_id" id="account_id" class="form-control">
                 @foreach ($accounts as $item)
-                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                <option value="{{ $item->id }}">Account:{{ $item->name }}
+                    <span class="text-danger">
+                        Balance:{{ remainingBalance($item->id)}}
+                    </span>
+                </option>
                 @endforeach
             </select>
             <p class="form-text text-danger">

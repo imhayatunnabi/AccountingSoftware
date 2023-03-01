@@ -14,6 +14,6 @@ class AccountSetup extends Model
         return $this->belongsTo(AccountType::class,'account_type_id','id');
     }
     public function transaction(){
-        return $this->hasOne(Transaction::class,'account_id','id');
+        return $this->hasMany(Transaction::class,'account_id','id');
     }
 }

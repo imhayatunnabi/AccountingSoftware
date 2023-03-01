@@ -27,7 +27,8 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        $accounts = AccountSetup::where('status',true)->get();
+        $accounts = AccountSetup::where('status',true)->with('transaction')->get();
+        // dd($accounts);
         return view('account::accounts.pages.transaction.create',compact('accounts'));
     }
 

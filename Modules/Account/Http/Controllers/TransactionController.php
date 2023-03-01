@@ -105,20 +105,6 @@ class TransactionController extends Controller
             'account_id'=>$request->account_id,
             'status'=>$request->status,
         ]);
-        $inputData = $request->all();
-        for ($i = 0; $i < count($inputData['item_name']); $i++) {
-            TransactionDetails::create([
-                'transaction_id'=>$transaction->id,
-                'item_name'=>$inputData['item_name'][$i],
-                'item_price'=>$inputData['item_price'][$i],
-                'quanity'=>$inputData['quantity'][$i],
-                'subtotal'=>$inputData['quantity'][$i]*$inputData['item_price'][$i],
-            ]);
-        }
-        $transactionDetails = TransactionDetails::where('transaction_id',$transaction->id)->get();
-        $transaction->update([
-            'amount'=> $transactionDetails->sum('subtotal'),
-        ]);
         alert()->success('Transaction update successfull');
         return to_route('account.transaction.index');
     }
@@ -134,5 +120,27 @@ class TransactionController extends Controller
         $transactionDetails = TransactionDetails::where('transaction_id',$transaction->id)->delete();
         $transaction->delete();
         alert()->success('Transaction has been deleted');
+    }
+    public function editDetails(Request $request, $transactionDetailsId){
+        $transactionDetails = TransactionDetails::find($transactionDetailsId);
+        $transaction = Transaction::find($transactionDetails->transaction_id);
+        $transactionAmount = Transaction::find($transactionDetails->transaction_id,['amount'])->amount;
+        $value = $transactionDetails->subtotal;
+        $session = $request->session()->put('tmp',[$value]);
+        $sessionTran = $request->session()->put('tmptrans',[$transactionAmount]);
+        $sessionData=session('tmp');
+        $sessionDataTran=session('tmptrans');
+        $transactionDetails->update([
+            'item_name'=>$request->item_name,
+            'item_price'=>$request->item_price,
+            'quanity'=>$request->quantity,
+            'subtotal'=>$request->quantity*$request->item_price,
+        ]);
+            $transaction->update([
+                'amount'=> $sessionDataTran[0] - $sessionData[0] + $transactionDetails->subtotal ,
+            ]);
+            session()->forget('tmp');
+        alert()->success('Transaction details updated');
+        return to_route('account.transaction.index');
     }
 }

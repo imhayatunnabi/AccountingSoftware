@@ -28,7 +28,6 @@ class TransactionController extends Controller
     public function create()
     {
         $accounts = AccountSetup::where('status',true)->with('transaction')->get();
-        // dd($accounts);
         return view('account::accounts.pages.transaction.create',compact('accounts'));
     }
 
@@ -85,7 +84,8 @@ class TransactionController extends Controller
     public function edit($id)
     {
         $transaction = Transaction::find($id);
-        return view('account::accounts.pages.transaction.edit',compact('transaction'));
+        $accounts = AccountSetup::all();
+        return view('account::accounts.pages.transaction.edit',compact('transaction','accounts'));
     }
 
     /**
@@ -102,18 +102,18 @@ class TransactionController extends Controller
         ]);
         $transaction->update([
             'payable'=>$request->payable,
+            'account_id'=>$request->account_id,
+            'status'=>$request->status,
         ]);
-        $items = $request->item;
-        if($items->count() != null){
-            foreach ($items as $key => $item) {
-                TransactionDetails::create([
-                    'transaction_id'=>$transaction->id,
-                    'item_name'=>$item->name,
-                    'item_price'=>$item->item_price,
-                    'quanity'=>$item->quanity,
-                    'subtotal'=>$item->quanity*$item->item_price,
-                ]);
-            }
+        $inputData = $request->all();
+        for ($i = 0; $i < count($inputData['item_name']); $i++) {
+            TransactionDetails::create([
+                'transaction_id'=>$transaction->id,
+                'item_name'=>$inputData['item_name'][$i],
+                'item_price'=>$inputData['item_price'][$i],
+                'quanity'=>$inputData['quantity'][$i],
+                'subtotal'=>$inputData['quantity'][$i]*$inputData['item_price'][$i],
+            ]);
         }
         $transactionDetails = TransactionDetails::where('transaction_id',$transaction->id)->get();
         $transaction->update([

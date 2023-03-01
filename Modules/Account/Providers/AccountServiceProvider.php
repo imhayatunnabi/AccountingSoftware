@@ -28,6 +28,7 @@ class AccountServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        require_once(module_path('account') . '/Http/helpers/helper.php');
     }
 
     /**

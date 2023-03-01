@@ -1,9 +1,9 @@
 @extends('account::accounts.layout.master')
 @section('content')
 <div class="container">
-    <form action="{{ route('account.transaction.edit',$transaction->id) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('account.transaction.update',$transaction->id) }}" method="post" enctype="multipart/form-data">
         @csrf
-        @method('put')
+        @method('PUT')
         <div class="mb-3 form-group">
             <label for="" class="form-label">Payable
                 <span class="text-danger">
@@ -29,7 +29,7 @@
                 <option value="{{ $item->id }}" {{ $transaction->account_id == $item->id ?'selected':'' }}>Account:{{
                     $item->name }}
                     <span class="text-danger">
-                        Balance:{{ remainingBalance($item->id)}}
+                        Balance:{{ balance($item->id)}}
                     </span>
                 </option>
                 @endforeach

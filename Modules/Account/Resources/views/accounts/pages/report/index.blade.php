@@ -1,5 +1,19 @@
 @extends('account::accounts.layout.master')
 @section('content')
+<h4 class="text-center text-primary">Balance</h4>
+<div class="row">
+    @foreach ($accounts as $item)
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Account Name: <span class="text-danger">{{ $item->name }}</span></h4>
+                <p class="card-text">Balance: {{ balance($item->id) }}</p>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+<h4 class="text-center text-primary">Report</h4>
 <form action="{{ route('account.index') }}" method="get" class="form-group">
     <div class="row">
         <div class="col-md-1"></div>

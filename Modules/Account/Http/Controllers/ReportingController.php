@@ -7,6 +7,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Routing\Controller;
 use Modules\Account\Entities\Transaction;
 use Illuminate\Contracts\Support\Renderable;
+use Modules\Account\Entities\AccountSetup;
 
 class ReportingController extends Controller
 {
@@ -40,6 +41,7 @@ class ReportingController extends Controller
         }else{
             alert()->error('no transactions has been on this report month');
         }
-        return view('account::accounts.pages.report.index',compact('transactions'));
+        $accounts = AccountSetup::with('transaction')->get();
+        return view('account::accounts.pages.report.index',compact('transactions','accounts'));
     }
 }

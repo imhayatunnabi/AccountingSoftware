@@ -27,7 +27,7 @@
                 @foreach ($accounts as $item)
                 <option value="{{ $item->id }}">Account:{{ $item->name }}
                     <span class="text-danger">
-                        Balance:{{ remainingBalance($item->id)}}
+                        Balance:{{ balance($item->id)}}
                     </span>
                 </option>
                 @endforeach

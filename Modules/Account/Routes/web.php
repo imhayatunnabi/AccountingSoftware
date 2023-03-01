@@ -38,15 +38,6 @@ Route::prefix('account')->name('account.')->group(function() {
         Route::put('/update/{id}',[AccountSetupController::class,'update'])->name('update');
         Route::get('/destroy/{id}',[AccountSetupController::class,'destroy'])->name('destroy');
     });
-    Route::prefix('/transaction-type')->name('transactionType.')->group(function(){
-        Route::get('/',[TransactionTypeController::class,'index'])->name('index');
-        Route::get('/create',[TransactionTypeController::class,'create'])->name('create');
-        Route::post('/store',[TransactionTypeController::class,'store'])->name('store');
-        Route::get('/show/{id}',[TransactionTypeController::class,'show'])->name('show');
-        Route::get('/edit/{id}',[TransactionTypeController::class,'edit'])->name('edit');
-        Route::put('/update/{id}',[TransactionTypeController::class,'update'])->name('update');
-        Route::get('/destroy/{id}',[TransactionTypeController::class,'destroy'])->name('destroy');
-    });
     Route::prefix('/transaction')->name('transaction.')->group(function(){
         Route::get('/',[TransactionController::class,'index'])->name('index');
         Route::get('/create',[TransactionController::class,'create'])->name('create');

@@ -1,9 +1,9 @@
 @extends('backend.master')
 @section('content')
-<form action="{{ route('account.index') }}" method="get">
+<form action="{{ route('account.index') }}" method="get" class="form-group">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-2 form-group">
+        <div class="col-md-2">
             <label class="control-label" for="y"> Select Year</label>
             <select name="y" id="y" class="form-control">
                 @foreach(array_combine(range(date("Y"), 1900), range(date("Y"), 1900)) as $year)
@@ -14,7 +14,7 @@
             </select>
         </div>
         <div class="col-md-1"></div>
-        <div class="col-md-2 form-group">
+        <div class="col-md-2">
             <label class="control-label" for="m">Select Month</label>
             <select name="m" for="m" class="form-control">
                 @foreach(cal_info(0)['months'] as $month)
@@ -25,7 +25,7 @@
             </select>
         </div>
         <div class="col-md-1"></div>
-        <div class="col-md-2 form-group">
+        <div class="col-md-2">
             <label for="Entity" class="form-label">Select Type</label>
             <select name="entity" id="" class="form-control">
                 <option value="0">Cash Out</option>

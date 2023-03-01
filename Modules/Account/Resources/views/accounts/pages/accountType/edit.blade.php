@@ -1,4 +1,4 @@
-@extends('backend.master')
+@extends('account::accounts.layout.master')
 @section('content')
 <div class="container">
     <form action="{{ route('account.type.update',$accountType->id) }}" method="post" enctype="multipart/form-data"

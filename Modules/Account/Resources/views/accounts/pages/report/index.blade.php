@@ -1,4 +1,4 @@
-@extends('backend.master')
+@extends('account::accounts.layout.master')
 @section('content')
 <form action="{{ route('account.index') }}" method="get" class="form-group">
     <div class="row">

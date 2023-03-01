@@ -1,4 +1,4 @@
-@extends('backend.master')
+@extends('account::accounts.layout.master')
 @section('content')
 
 @endsection

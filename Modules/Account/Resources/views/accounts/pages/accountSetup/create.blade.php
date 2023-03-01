@@ -1,4 +1,4 @@
-@extends('backend.master')
+@extends('account::accounts.layout.master')
 @section('content')
 <div class="container">
     <form action="{{ route('account.setup.store') }}" method="post" enctype="multipart/form-data" class="form-group">

@@ -1,4 +1,4 @@
-@extends('backend.master')
+@extends('account::accounts.layout.master')
 @section('content')
 <a href="{{ route('account.transaction.create') }}" class="btn btn-primary">Create</a>
 <div class="table-responsive">

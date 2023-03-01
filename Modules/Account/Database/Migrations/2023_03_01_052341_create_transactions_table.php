@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('account_id')->constrained('account_setups');
             $table->string('payable',120);
-            $table->foreignId('transaction_type_id')->constrained('transaction_types');
-            $table->double('amount');
+            $table->double('amount')->nullable();
             $table->double('due')->nullable();
-            $table->boolean('status');
+            $table->boolean('status')->default(0);
+            // 0 for cash out 1 for cash in
             $table->timestamps();
         });
     }

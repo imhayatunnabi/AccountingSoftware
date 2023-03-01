@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="{{ url('/backend/jquery/jquery.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <link rel="stylesheet" href="{{ url('/backend/datatables/jquery.dataTables.min.css') }}">
     @yield('admin.master.css')
 </head>

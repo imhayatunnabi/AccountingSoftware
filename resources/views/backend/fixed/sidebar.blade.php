@@ -43,6 +43,12 @@
                         Account Setup </a>
                 </li>
                 @endpermission
+                @permission('account.transaction.index')
+                <li>
+                    <a href="{{ route('account.transaction.index') }}"><i class="fa-solid fa-gear"></i></i>
+                        Transaction </a>
+                </li>
+                @endpermission
             </ul>
         </div>
     </div>

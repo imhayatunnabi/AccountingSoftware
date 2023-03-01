@@ -2,9 +2,12 @@
 
 namespace Modules\Account\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Account\Entities\Transaction;
+use Illuminate\Contracts\Support\Renderable;
+use Modules\Account\Entities\AccountSetup;
+use Modules\Account\Entities\TransactionDetails;
 
 class TransactionController extends Controller
 {
@@ -14,7 +17,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('account::index');
+        $transactions = Transaction::all();
+        return view('account::accounts.pages.transaction.index',compact('transactions'));
     }
 
     /**
@@ -23,7 +27,8 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        return view('account::create');
+        $accounts = AccountSetup::where('status',true)->get();
+        return view('account::accounts.pages.transaction.create',compact('accounts'));
     }
 
     /**
@@ -33,7 +38,31 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'payable'=>'required',
+        ]);
+        $transaction = Transaction::create([
+            'payable'=>$request->payable,
+            'account_id'=>$request->account_id,
+            'status'=>$request->status,
+        ]);
+        $transaction = Transaction::find($transaction->id);
+        $inputData = $request->all();
+        for ($i = 0; $i < count($inputData['item_name']); $i++) {
+            TransactionDetails::create([
+                'transaction_id'=>$transaction->id,
+                'item_name'=>$inputData['item_name'][$i],
+                'item_price'=>$inputData['item_price'][$i],
+                'quanity'=>$inputData['quantity'][$i],
+                'subtotal'=>$inputData['quantity'][$i]*$inputData['item_price'][$i],
+            ]);
+        }
+        $transactionDetails = TransactionDetails::where('transaction_id',$transaction->id)->get();
+        $transaction->update([
+            'amount'=> $transactionDetails->sum('subtotal'),
+        ]);
+        alert()->success('Transaction successfull');
+        return to_route('account.transaction.index');
     }
 
     /**
@@ -43,7 +72,8 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        return view('account::show');
+        $transaction = Transaction::find($id);
+        return view('account::accounts.pages.transaction.show');
     }
 
     /**
@@ -53,7 +83,8 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
-        return view('account::edit');
+        $transaction = Transaction::find($id);
+        return view('account::accounts.pages.transaction.edit',compact('transaction'));
     }
 
     /**
@@ -64,7 +95,31 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $transaction = Transaction::find($id);
+        $request->validate([
+            'payable'=>'required',
+        ]);
+        $transaction->update([
+            'payable'=>$request->payable,
+        ]);
+        $items = $request->item;
+        if($items->count() != null){
+            foreach ($items as $key => $item) {
+                TransactionDetails::create([
+                    'transaction_id'=>$transaction->id,
+                    'item_name'=>$item->name,
+                    'item_price'=>$item->item_price,
+                    'quanity'=>$item->quanity,
+                    'subtotal'=>$item->quanity*$item->item_price,
+                ]);
+            }
+        }
+        $transactionDetails = TransactionDetails::where('transaction_id',$transaction->id)->get();
+        $transaction->update([
+            'amount'=> $transactionDetails->sum('subtotal'),
+        ]);
+        alert()->success('Transaction update successfull');
+        return to_route('account.transaction.index');
     }
 
     /**
@@ -74,6 +129,9 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $transaction = Transaction::find($id);
+        $transactionDetails = TransactionDetails::where('transaction_id',$transaction->id)->delete();
+        $transaction->delete();
+        alert()->success('Transaction has been deleted');
     }
 }

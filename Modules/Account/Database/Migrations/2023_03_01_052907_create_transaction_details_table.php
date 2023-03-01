@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->id();
-            $table->string('item_name',120);
             $table->foreignId('transaction_id')->constrained('transactions');
+            $table->string('item_name',120);
             $table->double('item_price');
             $table->double('quanity');
             $table->double('subtotal');
-            $table->string('status');
+            $table->string('status')->default(0);
             $table->timestamps();
         });
     }

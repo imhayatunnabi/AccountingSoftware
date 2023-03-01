@@ -18,23 +18,23 @@
     <!-- Standard iPhone Touch Icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="{{ url('/image/favicon.svg') }}">
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ url('backend/input-tags/bootstrap-tagsinput') }}">
-    <link href="{{ url('backend/css/lib/calendar2/pignose.calendar.min.css') }}" rel="stylesheet">
-    <link href="{{ url('backend/css/lib/chartist/chartist.min.css') }}" rel="stylesheet">
-    <link href="{{ url('backend/css/lib/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ url('backend/css/lib/themify-icons.css') }}" rel="stylesheet">
-    <link href="{{ url('backend/css/lib/owl.carousel.min.css') }}" rel="stylesheet" />
-    <link href="{{ url('backend/css/lib/owl.theme.default.min.css') }}" rel="stylesheet" />
-    <link href="{{ url('backend/css/lib/weather-icons.css') }}" rel="stylesheet" />
-    <link href="{{ url('backend/css/lib/menubar/sidebar.css') }}" rel="stylesheet">
-    <link href="{{ url('backend/css/lib/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ url('backend/css/lib/helper.css') }}" rel="stylesheet">
-    <link href="{{ url('backend/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('modules/account/input-tags/bootstrap-tagsinput') }}">
+    <link href="{{ asset('modules/account/css/lib/calendar2/pignose.calendar.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('modules/account/css/lib/chartist/chartist.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('modules/account/css/lib/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('modules/account/css/lib/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('modules/account/css/lib/owl.carousel.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('modules/account/css/lib/owl.theme.default.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('modules/account/css/lib/weather-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('modules/account/css/lib/menubar/sidebar.css') }}" rel="stylesheet">
+    <link href="{{ asset('modules/account/css/lib/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('modules/account/css/lib/helper.css') }}" rel="stylesheet">
+    <link href="{{ asset('modules/account/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-    <link rel="stylesheet" href="{{ url('/backend/datatables/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('modules/account/datatables/jquery.dataTables.min.css') }}">
     @yield('admin.master.css')
 </head>
 
@@ -74,39 +74,39 @@
         </div>
     </div>
     {{-- bootstrap 5 input tags js --}}
-    <script type="text/javascript" src="{{ url('backend/input-tags/bootstrap-tagsinput.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('modules/account/input-tags/bootstrap-tagsinput.js') }}"></script>
     <script type="text/javascript">
         $(".inputtags").tagsinput('items');
     </script>
     <!--toaster-->
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <!-- jquery vendor -->
-    <script src="{{ url('backend/js/lib/jquery.min.js') }}"></script>
-    <script src="{{ url('backend/js/lib/jquery.nanoscroller.min.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/jquery.min.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/jquery.nanoscroller.min.js') }}"></script>
     <!-- nano scroller -->
-    <script src="{{ url('backend/js/lib/menubar/sidebar.js') }}"></script>
-    <script src="{{ url('backend/js/lib/preloader/pace.min.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/menubar/sidebar.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/preloader/pace.min.js') }}"></script>
     <!-- sidebar -->
 
-    <script src="{{ url('backend/js/lib/bootstrap.min.js') }}"></script>
-    <script src="{{ url('backend/js/scripts.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('modules/account/js/scripts.js') }}"></script>
     <!-- bootstrap -->
 
-    <script src="{{ url('backend/js/lib/calendar-2/moment.latest.min.js') }}"></script>
-    <script src="{{ url('backend/js/lib/calendar-2/pignose.calendar.min.js') }}"></script>
-    <script src="{{ url('backend/js/lib/calendar-2/pignose.init.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/calendar-2/moment.latest.min.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/calendar-2/pignose.calendar.min.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/calendar-2/pignose.init.js') }}"></script>
 
 
-    <script src="{{ url('backend/js/lib/weather/jquery.simpleWeather.min.js') }}"></script>
-    <script src="{{ url('backend/js/lib/weather/weather-init.js') }}"></script>
-    <script src="{{ url('backend/js/lib/circle-progress/circle-progress.min.js') }}"></script>
-    <script src="{{ url('backend/js/lib/circle-progress/circle-progress-init.js') }}"></script>
-    <script src="{{ url('backend/js/lib/chartist/chartist.min.js') }}"></script>
-    <script src="{{ url('backend/js/lib/sparklinechart/jquery.sparkline.min.js') }}"></script>
-    <script src="{{ url('backend/js/lib/sparklinechart/sparkline.init.js') }}"></script>
-    <script src="{{ url('backend/js/lib/owl-carousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ url('backend/js/lib/owl-carousel/owl.carousel-init.js') }}"></script>
-    <script src="{{ url('/backend/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/weather/jquery.simpleWeather.min.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/weather/weather-init.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/circle-progress/circle-progress.min.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/circle-progress/circle-progress-init.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/chartist/chartist.min.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/sparklinechart/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/sparklinechart/sparkline.init.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/owl-carousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('modules/account/js/lib/owl-carousel/owl.carousel-init.js') }}"></script>
+    <script src="{{ asset('modules/account/datatables/jquery.dataTables.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#pagination').DataTable();
@@ -163,7 +163,7 @@
             }
     </script>
     @endif
-    <script type="text/javascript" src="{{ url('/backend/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('modules/account/ckeditor/ckeditor.js') }}"></script>
     <script>
         ClassicEditor
             .create(document.querySelector('#product_name_fr'))

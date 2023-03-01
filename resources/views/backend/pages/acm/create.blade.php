@@ -23,7 +23,7 @@
         @foreach($modules as $module)
         <div class="mb-4">
             <div class="flex items-center">
-                <h6 class="font-medium text-primary">{{ucwords($module->name)}}<span class="text-danger ml-1"><i
+                <h6 class="font-medium text-primary">{{ucfirst($module->name)}}<span class="text-danger ml-1"><i
                             class="fa-solid fa-asterisk"></i></span></h6>
             </div>
             @foreach($module->permissions as $permission)

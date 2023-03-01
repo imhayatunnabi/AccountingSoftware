@@ -151,7 +151,12 @@
                     </div>
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
-                            <span class="user-avatar">{{ auth()->user()->name }}
+                            <span class="user-avatar">
+                                @auth
+                                {{ auth()->user()->name }}
+                                @else
+                                Accounts
+                                @endauth
                                 <i class="ti-angle-down f-s-10"></i>
                             </span>
                             <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">

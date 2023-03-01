@@ -6,7 +6,7 @@
                     <a href="{{ route('backend.index') }}">
                         {{-- <img style="width:80%;" src="{{ url('/uploads/settings/',settings()->logo) }}"
                             alt="{{ settings()->name }}" srcset=""> --}}
-                        <span class="font-weight-bold"> {{ settings()->name }}</span>
+                        <span class="font-weight-bold"> Accounting</span>
                     </a>
                 </div>
                 <li>

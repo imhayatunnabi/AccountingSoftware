@@ -31,30 +31,11 @@
                         Settings </a>
                 </li>
                 @endpermission
-                {{-- @permission('account.index') --}}
                 <li>
                     <a href="{{ route('account.index') }}"><i class="fa-solid fa-gear"></i></i>
                         Account </a>
                 </li>
-                {{-- @endpermission --}}
-                @permission('account.type.index')
-                <li>
-                    <a href="{{ route('account.type.index') }}"><i class="fa-solid fa-gear"></i></i>
-                        Account Type </a>
-                </li>
-                @endpermission
-                @permission('account.setup.index')
-                <li>
-                    <a href="{{ route('account.setup.index') }}"><i class="fa-solid fa-gear"></i></i>
-                        Account Setup </a>
-                </li>
-                @endpermission
-                @permission('account.transaction.index')
-                <li>
-                    <a href="{{ route('account.transaction.index') }}"><i class="fa-solid fa-gear"></i></i>
-                        Transaction </a>
-                </li>
-                @endpermission
+
             </ul>
         </div>
     </div>

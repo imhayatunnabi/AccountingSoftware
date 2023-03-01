@@ -31,6 +31,18 @@
                         Settings </a>
                 </li>
                 @endpermission
+                @permission('account.type.index')
+                <li>
+                    <a href="{{ route('account.type.index') }}"><i class="fa-solid fa-gear"></i></i>
+                        Account Type </a>
+                </li>
+                @endpermission
+                @permission('account.setup.index')
+                <li>
+                    <a href="{{ route('account.setup.index') }}"><i class="fa-solid fa-gear"></i></i>
+                        Account Setup </a>
+                </li>
+                @endpermission
             </ul>
         </div>
     </div>

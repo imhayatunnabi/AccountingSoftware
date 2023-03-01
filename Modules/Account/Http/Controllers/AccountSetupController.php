@@ -5,6 +5,8 @@ namespace Modules\Account\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Account\Entities\AccountSetup;
+use Modules\Account\Entities\AccountType;
 
 class AccountSetupController extends Controller
 {
@@ -14,7 +16,8 @@ class AccountSetupController extends Controller
      */
     public function index()
     {
-        return view('account::index');
+        $accounts = AccountSetup::all();
+        return view('account::accounts.pages.accountSetup.index',compact('accounts'));
     }
 
     /**
@@ -23,7 +26,8 @@ class AccountSetupController extends Controller
      */
     public function create()
     {
-        return view('account::create');
+        $accountTypes = AccountType::where('status',true)->get();
+        return view('account::accounts.pages.accountSetup.create',compact('accountTypes'));
     }
 
     /**
@@ -33,7 +37,20 @@ class AccountSetupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'type'=>'required',
+            'number'=>'required',
+            'status'=>'required',
+        ]);
+        AccountSetup::create([
+            'name'=>$request->name,
+            'account_type_id'=>$request->type,
+            'number'=>$request->number,
+            'status'=>$request->status,
+        ]);
+        alert()->success('Account created successfully');
+        return to_route('account.setup.index');
     }
 
     /**
@@ -43,7 +60,7 @@ class AccountSetupController extends Controller
      */
     public function show($id)
     {
-        return view('account::show');
+        return view('account::accounts.pages.accountSetup.show');
     }
 
     /**
@@ -53,7 +70,7 @@ class AccountSetupController extends Controller
      */
     public function edit($id)
     {
-        return view('account::edit');
+        return view('account::accounts.pages.accountSetup.edit');
     }
 
     /**

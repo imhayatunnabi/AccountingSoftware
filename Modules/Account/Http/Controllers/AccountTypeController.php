@@ -5,6 +5,7 @@ namespace Modules\Account\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Account\Entities\AccountType;
 
 class AccountTypeController extends Controller
 {
@@ -14,7 +15,8 @@ class AccountTypeController extends Controller
      */
     public function index()
     {
-        return view('account::index');
+        $accountTypes = AccountType::all();
+        return view('account::accounts.pages.accountType.index',compact('accountTypes'));
     }
 
     /**
@@ -23,7 +25,7 @@ class AccountTypeController extends Controller
      */
     public function create()
     {
-        return view('account::create');
+        return view('account::accounts.pages.accountType.create');
     }
 
     /**
@@ -53,9 +55,9 @@ class AccountTypeController extends Controller
      */
     public function edit($id)
     {
-        return view('account::edit');
+        $accountType = AccountType::find($id);
+        return view('account::accounts.pages.accountType.edit',compact('accountType'));
     }
-
     /**
      * Update the specified resource in storage.
      * @param Request $request

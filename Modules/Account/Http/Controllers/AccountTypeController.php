@@ -35,7 +35,16 @@ class AccountTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'status'=>'required',
+        ]);
+        AccountType::create([
+            'name'=>$request->name,
+            'status'=>$request->status,
+        ]);
+        alert()->success('Account type created successfully');
+        return to_route('account.type.index');
     }
 
     /**
@@ -66,7 +75,17 @@ class AccountTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $accountType = AccountType::find($id);
+        $request->validate([
+            'name'=>'required',
+            'status'=>'required',
+        ]);
+        $accountType->update([
+            'name'=>$request->name,
+            'status'=>$request->status,
+        ]);
+        alert()->success('Account type updated successfully');
+        return to_route('account.type.index');
     }
 
     /**
@@ -76,6 +95,8 @@ class AccountTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $accountType = AccountType::find($id)->delete();
+        alert()->error('Account type deleted successfully');
+        return to_route('account.type.index');
     }
 }

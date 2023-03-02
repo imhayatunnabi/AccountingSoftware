@@ -11,6 +11,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\SettingsSeeder;
+use Modules\Account\Database\Seeders\AccountDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,5 +30,6 @@ class DatabaseSeeder extends Seeder
        ]);
        $role = Role::where('name', '=', 'Super Admin')->first();
        $role->permissions()->sync(Permission::get()->pluck('id'));
+        $this->call(AccountDatabaseSeeder::class);
     }
 }

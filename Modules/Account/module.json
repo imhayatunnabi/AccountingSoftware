@@ -1,6 +1,11 @@
 {
     "name": "Account",
     "alias": "account",
+    "migration": {
+        "seeds": [
+            "Modules\\Account\\database\\seeds\\v1\\AccountDatabaseSeeder"
+        ]
+    },
     "description": "",
     "keywords": [],
     "priority": 0,

@@ -39,6 +39,24 @@
             </p>
         </div>
         <div class="mb-3 form-group">
+            <label for="" class="form-label">Transaction Type
+                <span class="text-danger">
+                    <i class="fa fa-asterisk" aria-hidden="true"></i>
+                </span>
+            </label>
+            <select name="transaction_type_id" id="transaction_type_id" class="form-control">
+                @foreach ($transactionType as $item)
+                <option value="{{ $item->id }}">{{ $item->name }}
+                </option>
+                @endforeach
+            </select>
+            <p class="form-text text-danger">
+                @error('status')
+                {{ $message }}
+                @enderror
+            </p>
+        </div>
+        <div class="mb-3 form-group">
             <label for="" class="form-label">Status
                 <span class="text-danger">
                     <i class="fa fa-asterisk" aria-hidden="true"></i>

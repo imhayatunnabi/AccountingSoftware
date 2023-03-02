@@ -18,10 +18,10 @@
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->status== true ? 'Active':'Inactive' }}</td>
                 <td>
-                    <a href="{{ route('transaction.type.edit',$item->id) }}" class="btn btn-primary">
+                    <a href="{{ route('account.transaction.type.edit',$item->id) }}" class="btn btn-primary">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
-                    <a href="{{ route('transaction.type.destroy',$item->id) }}" class="btn btn-danger">
+                    <a href="{{ route('account.transaction.type.destroy',$item->id) }}" class="btn btn-danger">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </a>
                 </td>

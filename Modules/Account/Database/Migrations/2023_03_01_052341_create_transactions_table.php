@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('account_id')->constrained('account_setups');
+            $table->foreignId('transaction_type_id')->constrained('transaction_types');
             $table->string('payable',120);
             $table->double('amount')->nullable();
             $table->double('due')->nullable();

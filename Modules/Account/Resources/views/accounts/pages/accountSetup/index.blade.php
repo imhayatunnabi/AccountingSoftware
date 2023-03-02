@@ -7,7 +7,7 @@
             <tr>
                 <th scope="col">Serial</th>
                 <th scope="col">Name</th>
-                <th scope="col">Type</th>
+                <th scope="col">Account Type</th>
                 <th scope="col">Account Number</th>
                 <th scope="col">Status</th>
                 <th scope="col">Action</th>

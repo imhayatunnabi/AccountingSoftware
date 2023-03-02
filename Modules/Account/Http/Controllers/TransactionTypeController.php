@@ -44,7 +44,7 @@ class TransactionTypeController extends Controller
             'status'=>$request->status,
         ]);
         alert()->success('Transaction type created successfully');
-        return to_route('transaction.type.index');
+        return to_route('account.transaction.type.index');
     }
 
     /**
@@ -85,7 +85,7 @@ class TransactionTypeController extends Controller
             'status'=>$request->status,
         ]);
         alert()->success('Transaction type updated successfully');
-        return to_route('transaction.type.index');
+        return to_route('account.transaction.type.index');
     }
 
     /**
@@ -97,6 +97,6 @@ class TransactionTypeController extends Controller
     {
         $transactionType = TransactionType::find($id)->delete();
         alert()->error('Transaction type deleted successfully');
-        return to_route('transaction.type.index');
+        return to_route('account.transaction.type.index');
     }
 }

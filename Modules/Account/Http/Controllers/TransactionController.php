@@ -8,6 +8,7 @@ use Modules\Account\Entities\Transaction;
 use Illuminate\Contracts\Support\Renderable;
 use Modules\Account\Entities\AccountSetup;
 use Modules\Account\Entities\TransactionDetails;
+use Modules\Account\Entities\TransactionType;
 
 class TransactionController extends Controller
 {
@@ -28,7 +29,8 @@ class TransactionController extends Controller
     public function create()
     {
         $accounts = AccountSetup::where('status',true)->with('transaction')->get();
-        return view('account::accounts.pages.transaction.create',compact('accounts'));
+        $transactionType = TransactionType::where('status',true)->get();
+        return view('account::accounts.pages.transaction.create',compact('accounts','transactionType'));
     }
 
     /**
@@ -43,6 +45,7 @@ class TransactionController extends Controller
         ]);
         $transaction = Transaction::create([
             'payable'=>$request->payable,
+            'transaction_type_id'=>$request->transaction_type_id,
             'account_id'=>$request->account_id,
             'status'=>$request->status,
         ]);
@@ -85,7 +88,8 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::find($id);
         $accounts = AccountSetup::all();
-        return view('account::accounts.pages.transaction.edit',compact('transaction','accounts'));
+        $transactionType = TransactionType::where('status',true)->get();
+        return view('account::accounts.pages.transaction.edit',compact('transaction','accounts','transactionType'));
     }
 
     /**
@@ -102,6 +106,7 @@ class TransactionController extends Controller
         ]);
         $transaction->update([
             'payable'=>$request->payable,
+            'transaction_type_id'=>$request->payable,
             'account_id'=>$request->account_id,
             'status'=>$request->status,
         ]);

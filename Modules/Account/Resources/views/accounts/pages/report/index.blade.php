@@ -58,6 +58,8 @@
             <tr>
                 <th scope="col">Serial</th>
                 <th scope="col">Payable</th>
+                <th scope="col">Account</th>
+                <th scope="col">Transaction Type</th>
                 <th scope="col">Paid</th>
                 <th scope="col">Due</th>
                 <th scope="col">Status</th>
@@ -69,6 +71,8 @@
             <tr class="">
                 <td scope="row">{{ $item->id }}</td>
                 <td>{{ $item->payable }}</td>
+                <td>{{ $item->account->name }}</td>
+                <td>{{ $item->transactionType->name }}</td>
                 <td>{{ $item->amount }}</td>
                 <td>{{ $item->due>0 ? $item->due : 'No Due' }}</td>
                 <td>{{ $item->status == true?'Cash In':'Cash Out' }}</td>

@@ -18,5 +18,3 @@ jobs:
           username: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
           server-dir: /
-      - name: Fresing the Database and Seeding the data
-        run: php artisan migrate:fresh --seed

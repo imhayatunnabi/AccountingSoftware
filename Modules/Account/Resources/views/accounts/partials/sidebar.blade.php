@@ -22,6 +22,10 @@
                         Account Setup </a>
                 </li>
                 <li>
+                    <a href="{{ route('account.transaction.type.index') }}"><i class="fa-solid fa-money-check-dollar"></i>
+                        Transaction Type</a>
+                </li>
+                <li>
                     <a href="{{ route('account.transaction.index') }}"><i class="fa-solid fa-money-check-dollar"></i>
                         Transaction </a>
                 </li>

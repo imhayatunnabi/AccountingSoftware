@@ -14,6 +14,9 @@ class Transaction extends Model
     public function account(){
         return $this->belongsTo(AccountSetup::class,'account_id','id');
     }
+    public function transactionType(){
+        return $this->belongsTo(TransactionType::class,'transaction_type_id','id');
+    }
     public function transactionDetails(){
         return $this->hasMany(TransactionDetails::class,'transaction_id','id');
     }

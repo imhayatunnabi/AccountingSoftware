@@ -148,4 +148,23 @@ class TransactionController extends Controller
         alert()->success('Transaction details updated');
         return to_route('account.transaction.index');
     }
+    public function addDetails(Request $request,$id){
+        $transaction = Transaction::find($id);
+        $inputData = $request->all();
+        for ($i = 0; $i < count($inputData['item_name']); $i++) {
+            TransactionDetails::create([
+                'transaction_id'=>$transaction->id,
+                'item_name'=>$inputData['item_name'][$i],
+                'item_price'=>$inputData['item_price'][$i],
+                'quanity'=>$inputData['quantity'][$i],
+                'subtotal'=>$inputData['quantity'][$i]*$inputData['item_price'][$i],
+            ]);
+        }
+        $transactionDetails = TransactionDetails::where('transaction_id',$transaction->id)->get();
+        $transaction->update([
+            'amount'=> $transactionDetails->sum('subtotal'),
+        ]);
+        alert()->success("Transaction details added");
+        return to_route('account.transaction.index');
+    }
 }

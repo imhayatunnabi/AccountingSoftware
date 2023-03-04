@@ -55,6 +55,7 @@ Route::prefix('account')->name('account.')->group(function() {
         Route::get('/show/{id}',[TransactionController::class,'show'])->name('show');
         Route::get('/edit/{id}',[TransactionController::class,'edit'])->name('edit');
         Route::put('/edit-details/{id}',[TransactionController::class,'editDetails'])->name('editDetails');
+        Route::post('/add-details/{id}',[TransactionController::class,'addDetails'])->name('addDetails');
         Route::put('/update/{id}',[TransactionController::class,'update'])->name('update');
         Route::get('/destroy/{id}',[TransactionController::class,'destroy'])->name('destroy');
     });

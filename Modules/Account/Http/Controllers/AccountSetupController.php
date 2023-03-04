@@ -70,7 +70,9 @@ class AccountSetupController extends Controller
      */
     public function edit($id)
     {
-        return view('account::accounts.pages.accountSetup.edit');
+        $account = AccountSetup::find($id);
+        $accountTypes = AccountType::where('status',true)->get();
+        return view('account::accounts.pages.accountSetup.edit',compact('account','accountTypes'));
     }
 
     /**
@@ -81,7 +83,21 @@ class AccountSetupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $account = AccountSetup::find($id);
+        $request->validate([
+            'name'=>'required',
+            'type'=>'required',
+            'number'=>'required',
+            'status'=>'required',
+        ]);
+        $account->update([
+            'name'=>$request->name,
+            'account_type_id'=>$request->type,
+            'number'=>$request->number,
+            'status'=>$request->status,
+        ]);
+        alert()->success('Account updated successfully');
+        return to_route('account.setup.index');
     }
 
     /**
@@ -91,6 +107,8 @@ class AccountSetupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $account = AccountSetup::find($id)->delete();
+        alert()->success('Account Deleted successfully');
+        return to_route('account.setup.index');
     }
 }

@@ -119,6 +119,18 @@ Login Email: super-admin@neuralwebx.com
 Login Password: 123456
 ```
 
+### Activate the account module
+
+```
+php artisan module:use Account
+```
+
+### Publish the account module assets
+
+```
+php artisan module:publish Account
+```
+
 ### Custom command to create repository for model
 
 ```

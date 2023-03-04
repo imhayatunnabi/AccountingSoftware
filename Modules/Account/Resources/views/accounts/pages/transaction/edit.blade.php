@@ -1,6 +1,25 @@
 @extends('account::accounts.layout.master')
 @section('content')
 <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h5>Payable: <span class="text-danger">{{ $transaction->payable }}</span></h5>
+        </div>
+        <div class="col-md-6">
+            <h5>Account: <span class="text-danger">{{ $transaction->account->name }}</span></h5>
+        </div>
+        <div class="col-md-4">
+            <h5>Account Number: <span class="text-danger">{{ $transaction->account->number }}</span></h5>
+        </div>
+        <div class="col-md-4">
+            <h5>Transaction For: <span class="text-danger">{{ $transaction->transactionType->name }}</span></h5>
+        </div>
+        <div class="col-md-4">
+            <h5>Transaction Type: <span class="text-danger">{{ $transaction->status == true ? 'Cash In':'cash Out'
+                    }}</span></h5>
+        </div>
+    </div>
+
     <div class="row form-group">
         @foreach ($transaction->transactionDetails as $key=>$item)
         <div class="col-md-4">
@@ -136,8 +155,17 @@
     <form action="{{ route('account.transaction.addDetails',$transaction->id) }}" method="post"
         id="newAddedTransactionType" class="form-group mt-3">
         @csrf
+        @if ($errors->any())
+        <div class="">
+            @foreach ($errors->all() as $error)
+            <p class="text-danger">
+                {{$error}} <span class="text-danger"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+            </p>
+            @endforeach
+        </div>
+        @endif
         <div class="row" id="appendInputFields"></div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Add New</button>
     </form>
 </div>
 <script>
@@ -154,10 +182,10 @@
                             <i class="fa fa-asterisk" aria-hidden="true"></i>
                         </span>
                     </label>
-                    <input type="text" class="form-control" name="item_name[]" id="item_name" aria-describedby="helpId"
+                    <input type="text" class="form-control" name="new_item_name[]" id="item_name" aria-describedby="helpId"
                         placeholder="Enter item name">
                     <p class="form-text text-danger">
-                        @error('item_name')
+                        @error('new_item_name')
                         {{ $message }}
                         @enderror
                     </p>
@@ -170,10 +198,10 @@
                             <i class="fa fa-asterisk" aria-hidden="true"></i>
                         </span>
                     </label>
-                    <input type="text" class="form-control" name="item_price[]" id="item_price" aria-describedby="helpId"
+                    <input type="text" class="form-control" name="new_item_price[]" id="item_price" aria-describedby="helpId"
                         placeholder="Enter item name">
                     <p class="form-text text-danger">
-                        @error('item_price')
+                        @error('new_item_price')
                         {{ $message }}
                         @enderror
                     </p>
@@ -186,10 +214,10 @@
                             <i class="fa fa-asterisk" aria-hidden="true"></i>
                         </span>
                     </label>
-                    <input type="text" class="form-control" name="quantity[]" id="quantity" aria-describedby="helpId"
+                    <input type="text" class="form-control" name="new_quantity[]" id="quantity" aria-describedby="helpId"
                         placeholder="Item quantity">
                     <p class="form-text text-danger">
-                        @error('quantity')
+                        @error('new_quantity')
                         {{ $message }}
                         @enderror
                     </p>

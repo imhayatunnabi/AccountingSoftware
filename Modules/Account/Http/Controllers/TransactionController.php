@@ -150,14 +150,19 @@ class TransactionController extends Controller
     }
     public function addDetails(Request $request,$id){
         $transaction = Transaction::find($id);
+        $request->validate([
+            'new_item_name'=>'required',
+            'new_item_price'=>'required',
+            'new_quantity'=>'required',
+        ]);
         $inputData = $request->all();
         for ($i = 0; $i < count($inputData['item_name']); $i++) {
             TransactionDetails::create([
                 'transaction_id'=>$transaction->id,
-                'item_name'=>$inputData['item_name'][$i],
-                'item_price'=>$inputData['item_price'][$i],
-                'quanity'=>$inputData['quantity'][$i],
-                'subtotal'=>$inputData['quantity'][$i]*$inputData['item_price'][$i],
+                'item_name'=>$inputData['new_item_name'][$i],
+                'item_price'=>$inputData['new_item_price'][$i],
+                'quanity'=>$inputData['new_quantity'][$i],
+                'subtotal'=>$inputData['new_quantity'][$i]*$inputData['new_item_price'][$i],
             ]);
         }
         $transactionDetails = TransactionDetails::where('transaction_id',$transaction->id)->get();
